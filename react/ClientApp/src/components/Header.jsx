@@ -60,6 +60,14 @@ function ResponsiveAppBar() {
       window.location.reload();
     }
   };
+
+  const handleClick = () => {
+    window.scrollTo({
+      top: 450,
+      left: 0,
+      behavior: 'smooth'
+  });
+  };
   
 
   return (
@@ -109,11 +117,7 @@ function ResponsiveAppBar() {
                     Startpagina
                   </Link>
                 </Button>
-                <Button size="large" variant="text">
-                  <Link className="nav" id="voorstellingen" to="/voorstellingen">
-                    Voorstellingen
-                  </Link>
-                </Button>
+                <Button onClick={handleClick}><Link className="nav" id="voorstellingen" to="/">Voorstellingen</Link></Button>
                 <Button size="large" variant="text">
                   <Link className="nav" id="toegankelijkheid" to="/toegankelijkheid">
                     Toegankelijkheid
@@ -237,9 +241,7 @@ function ResponsiveAppBar() {
             </li>
             <li>
               <a>
-                <Button variant="text">
-                  <Link id="voorstellingen" to="/voorstellingen">Voorstellingen</Link>
-                </Button>
+              <Button onClick={handleClick}><Link className="nav" id="voorstellingen" to="/">Voorstellingen</Link></Button>
               </a>
             </li>
             <li>

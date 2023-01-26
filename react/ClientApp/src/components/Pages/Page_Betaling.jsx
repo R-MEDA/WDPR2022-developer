@@ -94,6 +94,11 @@ function Page_Betaling() {
       for(const reservation of reservations){
         console.log(reservation)
         await addPaymentToReservation(reservation.id, data.id);
+        for (const ticket of reservation.tickets)
+        {
+          const t = "Ticketcode: " + ticket.id + "  Show: " + ticket.performance.show.name 
+          sendEmail(t)
+        }
       }
       
     } catch (error) {
@@ -114,7 +119,25 @@ function Page_Betaling() {
     }
   }
 
+  const sendEmail = async (t) => {
+    const mail = UserService.getUser().email
+    const data = {
+      toEmail: mail,
+      toName: "",
+      text: "Bedankt voor uw aankoop! " + "\n" + t,
+      subject: "Ticket Theater Laak"
+    }
 
+    const response = await fetch('https://localhost:7293/api/Email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+  }
+  
+  
   return (
     <>
       <div dangerouslySetInnerHTML={{ __html: html }} />
