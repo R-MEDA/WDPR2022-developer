@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 public class TicketController : ControllerBase
 {
-    ITheaterDbContext _context;
+    TheaterDbContext _context;
     private readonly UserManager<IdentityUser> _userManager;
 
-    public TicketController(ITheaterDbContext context)
+    public TicketController(TheaterDbContext context)
     {
         _context = context;
     }
@@ -105,11 +105,12 @@ public class TicketController : ControllerBase
     public IActionResult transferTicket([FromBody] TicketTransferDTO TicketTransferDTO)
     {
 
-        var receiverVisitor = _context.Visitors.Where(v => v.Id == TicketTransferDTO.visitorIdReceiver).FirstOrDefault();
-        var oldTicket = _context.Tickets.FirstOrDefault(t => t.Id == TicketTransferDTO.ticketId);
+        var receiverVisitor = _context.Visitors.Where(v => v.Id == 2).FirstOrDefault();
+        var oldTicket = _context.Tickets.Include(t=> t.Seat).
+        Include(t=> t.Performance).FirstOrDefault(t => t.Id == TicketTransferDTO.ticketId);
         
         var newTicket = new TransferedTicket(oldTicket, receiverVisitor);
-
+        _context.TransferedTickets.Add(newTicket);
         _context.SaveChanges();
         return Ok();
     }

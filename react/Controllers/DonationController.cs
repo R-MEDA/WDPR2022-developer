@@ -72,6 +72,7 @@ public class DonationController : ControllerBase
 
     [HttpPost]
     [Route("DonatieListener")]
+    [Consumes("application/json")]
     public async Task<ActionResult<donationListener>> DonatieListener([FromBody] donationListener donationListenerModel)
     {
 
