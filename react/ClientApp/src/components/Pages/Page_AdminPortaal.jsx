@@ -6,7 +6,16 @@ import { useEffect } from 'react';
 
 
 function Page_AdminPortaal() {
+    
     const navigate = useNavigate();
+
+    useEffect(()=> {
+        if (UserService.getUser().email !== "admin@gmail.com")
+        {
+            alert("Deze pagina is niet voor jou.")
+            navigate("/")
+        }
+    },[])
     
     return (
         <>
