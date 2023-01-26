@@ -104,10 +104,10 @@ public class TicketController : ControllerBase
     [Route("transferTicket")]
     public IActionResult transferTicket([FromBody] TicketTransferDTO TicketTransferDTO)
     {
-        var receiverVisitor = _context.Visitors.Where(v => v.Id == TicketTransferDTO.visitorIdReceiver).Result;
+
+        var receiverVisitor = _context.Visitors.Where(v => v.Id == TicketTransferDTO.visitorIdReceiver).FirstOrDefault();
         var oldTicket = _context.Tickets.FirstOrDefault(t => t.Id == TicketTransferDTO.ticketId);
         
-
         var newTicket = new TransferedTicket(oldTicket, receiverVisitor);
 
         _context.SaveChanges();
@@ -128,8 +128,8 @@ public class TicketController : ControllerBase
 
     public class TicketTransferDTO
     {
-        public string visitorIdOwner { get; set; }
-        public string visitorIdReceiver { get; set; }
+        
+        public int visitorIdReceiver { get; set; }
         public int ticketId { get; set; }
     }
 }
