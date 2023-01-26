@@ -2,7 +2,7 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import "../../styles/generalStyle.css";
 import { useEffect } from 'react';
-
+import UserService from '../../services/UserService';
 
 
 function Page_AdminPortaal() {
