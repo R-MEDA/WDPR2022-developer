@@ -48,10 +48,12 @@ public class ReservationController : ControllerBase
     public async Task<ActionResult<List<Reservation>>> GetReservationsWithoutPaymentIdAsync(int userId)
     {
         var reservations = await _context.Reservations
+        .Include(r => r.Tickets)
+        .ThenInclude(r => r.Seat)
             .Include(r => r.Visitor)
             .Include(r => r.Tickets)
             .ThenInclude(t => t.Performance)
-            .Where(r => r.Visitor.Id == userId && r.Payment == null)
+            .Where(r => r.Visitor.Id == userId)
             .ToListAsync();
         
         if (reservations == null)

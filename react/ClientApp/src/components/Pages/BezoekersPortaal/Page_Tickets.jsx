@@ -14,7 +14,7 @@ function Page_Tickets() {
 
     
     useEffect(() => {
-        axios.get(`https://localhost:7293/api/Order/getReservations?email=${UserService.getUser().email}`)
+        axios.get(`https://localhost:7293/api/Reservation/getReservations/${UserService.getUser().id}`)
             .then(res => {
                 setOrders(res.data)
                 console.log(res.data)

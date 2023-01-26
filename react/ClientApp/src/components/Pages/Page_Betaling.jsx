@@ -105,7 +105,7 @@ function Page_Betaling() {
     try {
       const url = "https://localhost:7293/api/Reservation/addpaymenttoreservation/" + reservationId + "/" + paymentId
       const response = await fetch(url, {
-        method: 'POST'
+        method: 'PUT'
       });
       const data = await response;
       console.log(data);
