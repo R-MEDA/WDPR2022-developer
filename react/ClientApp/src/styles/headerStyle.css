@@ -1,0 +1,85 @@
+header {
+    background-color: black;
+    color: white;
+
+}
+.hide-AfterLogin {
+    display: none;
+}
+
+li a {
+    display: flex;
+    color: var(--black_color);
+    background-color: var(--black_color);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    /* dikte van de font */
+    font-size: 1em;
+}
+
+
+
+li {
+    display: inline-block;
+}
+
+li a:hover {
+    color: var(--blue_color);
+}
+
+a:hover{
+    color: white;
+}
+
+.User{
+    color: blue;
+    background-color: var(--black_color);
+    text-align: center;
+    padding: 12px 14px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.logout{
+    color: blue;
+    background-color: aquamarine;
+    text-align: center;
+    padding: 12px 14px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.currentpage {
+    background-color: var(--middle_color);
+}
+
+img {
+    /* margin: 5%; */
+    width: 40%;
+}
+
+
+#menu-appbar{
+    color: grey;
+}
+
+.nav{
+    text-decoration: none;
+}
+
+.nav:hover{
+    color: rgb(1, 1, 124);
+    opacity: 4.0;
+}
+
+.User .beg{
+    margin-left: 300px;
+    margin-top: 10px;
+}

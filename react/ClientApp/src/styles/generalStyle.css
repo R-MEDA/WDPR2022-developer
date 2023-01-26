@@ -1,0 +1,45 @@
+:root {
+    --dark_color: black;
+    --middle_color: #587cf1;
+    --light_color: white;
+}
+
+.everything{
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.flex-container-horizontal {
+    margin-left: 100px;
+    margin-right: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-container-vertical {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+#button{
+    margin-top: 20px;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    background-color: #1a73e8;
+    color:white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+@media screen and (max-width: 600px) {
+    
+}
+    
