@@ -115,6 +115,14 @@ public class TicketController : ControllerBase
         return Ok();
     }
 
+    [HttpGet]
+    [Route("getTransfered")]
+    public async Task<ActionResult<List<TransferedTicket>>> getTransfered(int id)
+    {
+        return await _context.TransferedTickets.Where(t => t.Visitor.Id == id).Include(t => t.Seat).Include(t => t.Performance) .ToListAsync();
+
+    }
+
 
     public class TicketDTO
     {

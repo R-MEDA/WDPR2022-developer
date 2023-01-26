@@ -9,6 +9,7 @@ import Orders from './Orders';
 function Page_Tickets() {
 
     const [orders, setOrders] = useState([]);
+    const [transferedTickets, setTransferedTickets] = useState([]);
     const [klantNummerOntvanger, setKlantNummerOntvanger] = useState();
     const [ticketNummer, setTicketNummer] = useState();
 
@@ -19,6 +20,12 @@ function Page_Tickets() {
                 setOrders(res.data)
                 console.log(res.data)
             })
+
+            axios.get(`https://localhost:7293/api/Ticket/getTransfered?id=${UserService.getUser().id}`)
+            .then(res => {setTransferedTickets(res.data);
+            console.log(res.data)})
+
+
     }, [])
 
     const ticketOverzetten = () => {
@@ -64,6 +71,19 @@ function Page_Tickets() {
                             Zet ticket over
                         </button>
                     </form>
+
+                    <h1>Transfered Ticket</h1>
+                    {transferedTickets.map(ticket => {
+                        return(
+                            <div>
+                                <p>Show: {ticket.performance.show.name} </p>
+                                <p>Aanvang: {ticket.performance.startTime}</p>
+                                <p>Stoel: {ticket.seat.seatNumber}</p>
+                                <p>Rij: {ticket.seat.rowNumber}</p>
+                            </div>
+                        )
+                    })}
+
         </>
     )
 
