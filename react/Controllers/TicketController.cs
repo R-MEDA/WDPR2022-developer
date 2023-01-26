@@ -104,13 +104,9 @@ public class TicketController : ControllerBase
     [Route("transferTicket")]
     public IActionResult transferTicket([FromBody] TicketTransferDTO TicketTransferDTO)
     {
-        var receiverIdentityUser = _userManager.FindByIdAsync(TicketTransferDTO.visitorIdReceiver);
-        var receiverVisitor = _context.Visitors.FirstOrDefaultAsync(x => x.IdentityUser.Id == TicketTransferDTO.visitorIdReceiver).Result;
+        var receiverVisitor = _context.Visitors.Where(v => v.Id == TicketTransferDTO.visitorIdReceiver).Result;
         var oldTicket = _context.Tickets.FirstOrDefault(t => t.Id == TicketTransferDTO.ticketId);
         
-        if(receiverIdentityUser == null || receiverVisitor == null || oldTicket == null){
-            return BadRequest("Een van de opgegeven waarde is niet juist ingevuld.");
-        }
 
         var newTicket = new TransferedTicket(oldTicket, receiverVisitor);
 
